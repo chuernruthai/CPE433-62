@@ -40,7 +40,6 @@ namespace DNWS
     }
 
     /// <summary>
-    /// HTTP processor will process each http request
     /// </summary>
 
     public class HTTPProcessor
@@ -86,7 +85,6 @@ namespace DNWS
         protected Dictionary<string, PluginInfo> plugins;
 
         /// <summary>
-        /// Constructor, set the client socket and parent ref, also init stat hash
         /// </summary>
         /// <param name="client">Client socket</param>
         /// <param name="parent">Parent ref</param>
@@ -109,7 +107,6 @@ namespace DNWS
         }
 
         /// <summary>
-        /// Get a file from local harddisk based on path
         /// </summary>
         /// <param name="path">Absolute path to the file</param>
         /// <returns></returns>
@@ -150,7 +147,6 @@ namespace DNWS
         }
 
         /// <summary>
-        /// Get a request from client, process it, then return response to client
         /// </summary>
         public void Process()
         {
@@ -238,7 +234,6 @@ namespace DNWS
     }
 
     /// <summary>
-    /// Main server class, open the socket and wait for client
     /// </summary>
     public class DotNetWebServer
     {
@@ -256,7 +251,6 @@ namespace DNWS
         }
 
         /// <summary>
-        /// Singleton here
         /// </summary>
         /// <param name="parent">parent ref</param>
         /// <returns></returns>
@@ -294,7 +288,7 @@ namespace DNWS
                     // Wait for client
                     clientSocket = serverSocket.Accept();
                     // Get one, show some info
-                    _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
+                    // _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
                     Thread t = new Thread(new ThreadStart(hp.Process));
                     t.Start();
